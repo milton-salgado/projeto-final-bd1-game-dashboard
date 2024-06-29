@@ -1,4 +1,3 @@
-from fastapi import FastAPI
 
 def register_calls(app, conn):
     @app.get("/resumo/media_avaliacao_genero")

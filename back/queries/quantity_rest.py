@@ -1,4 +1,3 @@
-from fastapi import Fastapi
 
 def register_calls(app, conn):
     @app.get("/quantidade/quantidade_jogos_plataforma")
