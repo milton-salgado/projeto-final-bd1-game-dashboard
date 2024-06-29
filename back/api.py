@@ -5,6 +5,7 @@ from sqlalchemy import create_engine
 import configparser
 
 import queries.summary_rest as summary_rest
+import queries.quantity_rest as quantity_rest
 
 # Load configuration
 config = configparser.ConfigParser()
@@ -24,3 +25,4 @@ app.add_middleware(
 
 conn = engine.connect()
 summary_rest.register_calls(app, conn)
+quantity_rest.register_calls(app, conn)
