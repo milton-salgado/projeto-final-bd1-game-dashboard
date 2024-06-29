@@ -16,13 +16,12 @@ def register_calls(app, conn):
     @app.get("/resumo/jogos_mais_vendidos_loja")
     async def jogos_mais_vendidos_loja():
         query = """
-        SELECT l.nome AS loja, j.nome AS jogo, SUM(v.qtd_vendida) AS total_vendas
+        SELECT l.nome AS loja, COUNT(idLoja) AS total_vendas
         FROM Venda v
         JOIN Jogo j ON v.idJogo = j.id
         JOIN Loja l ON v.idLoja = l.id
-        GROUP BY l.nome, j.nome
+        GROUP BY l.id
         ORDER BY total_vendas DESC
-        LIMIT 10;
         """
         result = conn.execute(query)
         return result.fetchall()
