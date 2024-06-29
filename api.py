@@ -11,7 +11,7 @@ config = configparser.ConfigParser()
 config.read('configurations.ini')
 
 # Set up engine:
-engine = create_engine(config['database']['ConnectionString'], echo=True, connect_args={"timeout": 100})
+engine = create_engine(config['database']['ConnectionString'], echo=True)
 
 app = FastAPI()
 
