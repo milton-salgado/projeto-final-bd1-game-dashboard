@@ -48,4 +48,17 @@ def register_calls(app, conn):
         result = conn.execute(query)
         return result.fetchall()
     
+    @app.get("/resumo/jogos_por_genero")
+    async def jogos_por_genero():
+        query = """
+        SELECT g.nome AS genero, GROUP_CONCAT(j.nome SEPARATOR ', ') AS jogos
+        FROM Genero g
+        JOIN Especificacao e ON g.id = e.idGenero
+        JOIN Jogo j ON e.idJogo = j.id
+        GROUP BY g.nome;
+        """
+        result = conn.execute(query)
+        return result.fetchall()
+
+    
 
