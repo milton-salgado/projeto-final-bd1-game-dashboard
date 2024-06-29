@@ -2,17 +2,15 @@ import os
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy import create_engine
-import configparser
 
 import queries.summary_rest as summary_rest
 import queries.quantity_rest as quantity_rest
 
-# Load configuration
-config = configparser.ConfigParser()
-config.read('configurations.ini')
+# Directly specify the connection string
+connection_string = "mysql+pymysql://root:@localhost/empresa"
 
 # Set up engine:
-engine = create_engine(config['database']['ConnectionString'], echo=True)
+engine = create_engine(connection_string, echo=True)
 
 app = FastAPI()
 
