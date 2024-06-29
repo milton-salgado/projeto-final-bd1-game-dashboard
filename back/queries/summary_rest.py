@@ -1,31 +1,6 @@
 from fastapi import FastAPI
 
 def register_calls(app, conn):
-    @app.get("/resumo/quantidade_jogos_plataforma")
-    async def quantidade_jogos_plataforma():
-        query = """
-        SELECT p.nome AS plataforma, COUNT(j.id) AS quantidade_jogos
-        FROM Plataforma p
-        LEFT JOIN Versao v ON p.id = v.idPlataforma
-        LEFT JOIN Jogo j ON v.idJogo = j.id
-        GROUP BY p.nome;
-        """
-        result = conn.execute(query)
-        return result.fetchall()
-
-    @app.get("/resumo/jogos_mais_vendidos_loja")
-    async def jogos_mais_vendidos_loja():
-        query = """
-        SELECT l.nome AS loja, COUNT(idLoja) AS total_vendas
-        FROM Venda v
-        JOIN Jogo j ON v.idJogo = j.id
-        JOIN Loja l ON v.idLoja = l.id
-        GROUP BY l.id
-        ORDER BY total_vendas DESC
-        """
-        result = conn.execute(query)
-        return result.fetchall()
-
     @app.get("/resumo/media_avaliacao_genero")
     async def media_avaliacao_genero():
         query = """
@@ -61,14 +36,16 @@ def register_calls(app, conn):
         result = conn.execute(query)
         return result.fetchall()
 
-    @app.get("/resumo/quantidade_jogos_publicador")
-    async def quantidade_jogos_publicador():
+    @app.get("/resumo/funcoes_criadores")
+    async def funcoes_criadores():
         query = """
-        SELECT pub.nome AS publicador, COUNT(j.id) AS quantidade_jogos
-        FROM Jogo j
-        JOIN Publicacao p ON j.id = p.idJogo
-        JOIN Publicador pub ON p.idPublicador = pub.id
-        GROUP BY pub.nome;
+        SELECT c.nome AS criador, GROUP_CONCAT(f.nome SEPARATOR ', ') AS funcoes
+        FROM Criador c
+        JOIN Atividade a ON c.id = a.idCriador
+        JOIN Funcao f ON a.idFuncao = f.id
+        GROUP BY c.nome;
         """
         result = conn.execute(query)
         return result.fetchall()
+    
+
