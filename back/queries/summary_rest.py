@@ -14,7 +14,7 @@ def register_calls(app, conn):
     @app.get("/resumo/jogos_publicados_desenvolvedor")
     async def jogos_publicados_desenvolvedor():
         query = """
-        SELECT d.nome AS desenvolvedor, COUNT(j.id) AS jogos_publicados
+        SELECT d.nome AS desenvolvedor, COUNT(j.id) AS jogos_desenvolvidos
         FROM Desenvolvedor d
         JOIN Desenvolvimento dev ON d.id = dev.idDesenvolvedor
         JOIN Jogo j ON j.id = dev.idJogo AND j.avaliacao > (SELECT AVG(avaliacao) FROM Jogo)
