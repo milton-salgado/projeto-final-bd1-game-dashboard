@@ -1,7 +1,26 @@
 import React from 'react';
 import './../style.css';
+import { useEffect, useState } from "react";
 
-const dashboard = () => {
+// Services
+import quantityService from "../services/quantityService";
+import summaryService from "../services/summaryService";
+
+const Dashboard = () => {
+  const [qtdJogosPlataforma, setQtdJogosPlataforma] = useState([]);
+
+  useEffect(() => {
+    quantityService
+      .getQuantidadeJogosPlataforma()
+      .then((response) => {
+        setQtdJogosPlataforma(response?.data);
+        console.log(qtdJogosPlataforma);
+      })
+      .catch((Err) => {
+        console.log("Error getQuantidadeJogosPlataforma: " + Err);
+      });
+  }, []);
+
   return (
     <div className="dashboard">
       <h2>Dashboard</h2>
@@ -10,4 +29,4 @@ const dashboard = () => {
   );
 };
 
-export default dashboard;
+export default Dashboard;
