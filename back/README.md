@@ -10,3 +10,5 @@
   - `senha`: Substitua por sua senha.
 
   - `database`: Modifique para o nome do seu banco de dados.
+
+- Rode a aplicação com `python main.py` ou `py main.py`
