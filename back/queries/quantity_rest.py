@@ -1,5 +1,18 @@
 from sqlalchemy import text
 
+def format_res(res, target, max_len):
+    cols = list(res.keys())
+    retval = []
+    count = 0
+    for r in res:
+        if count > max_len:
+            break
+        item = {}
+        for k in range(len(r)):
+            item[cols[k]] = r[k]
+        target.append(item)
+        count += 1
+
 def register_calls(app, conn):
     @app.get("/quantidade/quantidade_jogos_plataforma")
     async def quantidade_jogos_plataforma():
@@ -11,7 +24,9 @@ def register_calls(app, conn):
         GROUP BY p.nome;
         """
         result = conn.execute(text(query))
-        return result.fetchall()
+        history = []
+        format_res(result, history, 10**30)
+        return history
 
     @app.get("/quantidade/quantidade_jogos_vendidos_loja")
     async def jogos_mais_vendidos_loja():
@@ -24,7 +39,9 @@ def register_calls(app, conn):
         ORDER BY total_vendas DESC
         """
         result = conn.execute(text(query))
-        return result.fetchall()
+        history = []
+        format_res(result, history, 10**30)
+        return history
 
     @app.get("/quantidade/quantidade_jogos_publicador")
     async def quantidade_jogos_publicador():
@@ -36,7 +53,9 @@ def register_calls(app, conn):
         GROUP BY pub.nome;
         """
         result = conn.execute(text(query))
-        return result.fetchall()
+        history = []
+        format_res(result, history, 10**30)
+        return history
     
     @app.get("/quantidade/quantidade_jogos_por_genero")
     async def quantidade_jogos_por_genero():
@@ -48,5 +67,6 @@ def register_calls(app, conn):
         GROUP BY g.nome;
         """
         result = conn.execute(text(query))
-        return result.fetchall()
-
+        history = []
+        format_res(result, history, 10**30)
+        return history

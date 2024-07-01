@@ -1,5 +1,18 @@
 from sqlalchemy import text
 
+def format_res(res, target, max_len):
+    cols = list(res.keys())
+    retval = []
+    count = 0
+    for r in res:
+        if count > max_len:
+            break
+        item = {}
+        for k in range(len(r)):
+            item[cols[k]] = r[k]
+        target.append(item)
+        count += 1
+
 def register_calls(app, conn):
     @app.get("/resumo/media_avaliacao_genero")
     async def media_avaliacao_genero():
@@ -10,7 +23,9 @@ def register_calls(app, conn):
         GROUP BY g.nome;
         """
         result = conn.execute(text(query))
-        return result.fetchall()
+        history = []
+        format_res(result, history, 10**30)
+        return history
 
     @app.get("/resumo/jogos_publicados_desenvolvedor")
     async def jogos_publicados_desenvolvedor():
@@ -22,7 +37,9 @@ def register_calls(app, conn):
         GROUP BY d.nome;
         """
         result = conn.execute(text(query))
-        return result.fetchall()
+        history = []
+        format_res(result, history, 10**30)
+        return history
 
     @app.get("/resumo/plataformas_suportadas_jogo")
     async def plataformas_suportadas_jogo():
@@ -34,7 +51,9 @@ def register_calls(app, conn):
         GROUP BY j.nome;
         """
         result = conn.execute(text(query))
-        return result.fetchall()
+        history = []
+        format_res(result, history, 10**30)
+        return history
 
     @app.get("/resumo/funcoes_criadores")
     async def funcoes_criadores():
@@ -46,7 +65,9 @@ def register_calls(app, conn):
         GROUP BY c.nome;
         """
         result = conn.execute(text(query))
-        return result.fetchall()
+        history = []
+        format_res(result, history, 10**30)
+        return history
     
     @app.get("/resumo/jogos_por_genero")
     async def jogos_por_genero():
@@ -58,7 +79,6 @@ def register_calls(app, conn):
         GROUP BY g.nome;
         """
         result = conn.execute(text(query))
-        return result.fetchall()
-
-    
-
+        history = []
+        format_res(result, history, 10**30)
+        return history
