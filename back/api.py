@@ -7,7 +7,7 @@ import queries.summary_rest as summary_rest
 import queries.quantity_rest as quantity_rest
 
 # Directly specify the connection string
-connection_string = "mysql+pymysql://root:@localhost/empresa"
+connection_string = "mysql+pymysql://root:senha@localhost/banco"
 
 # Set up engine:
 engine = create_engine(connection_string, echo=True)
