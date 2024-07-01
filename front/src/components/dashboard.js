@@ -13,7 +13,7 @@ const Dashboard = () => {
     quantityService
       .getQuantidadeJogosPlataforma()
       .then((response) => {
-        setQtdJogosPlataforma(response?.data);
+        setQtdJogosPlataforma(response);
         console.log(qtdJogosPlataforma);
       })
       .catch((Err) => {
@@ -25,6 +25,9 @@ const Dashboard = () => {
     <div className="dashboard">
       <h2>Dashboard</h2>
       <p>Conteúdo do dashboard vai aqui...</p>
+      <div>
+      {qtdJogosPlataforma?.data?.map((fodase) => <div>{fodase.plataforma}: {fodase.quantidade_jogos}</div>)}
+      </div>
     </div>
   );
 };
