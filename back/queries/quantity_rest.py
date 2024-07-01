@@ -1,3 +1,4 @@
+from sqlalchemy import text
 
 def register_calls(app, conn):
     @app.get("/quantidade/quantidade_jogos_plataforma")
@@ -9,7 +10,7 @@ def register_calls(app, conn):
         LEFT JOIN Jogo j ON v.idJogo = j.id
         GROUP BY p.nome;
         """
-        result = conn.execute(query)
+        result = conn.execute(text(query))
         return result.fetchall()
 
     @app.get("/quantidade/quantidade_jogos_vendidos_loja")
@@ -22,7 +23,7 @@ def register_calls(app, conn):
         GROUP BY l.id
         ORDER BY total_vendas DESC
         """
-        result = conn.execute(query)
+        result = conn.execute(text(query))
         return result.fetchall()
 
     @app.get("/quantidade/quantidade_jogos_publicador")
@@ -34,7 +35,7 @@ def register_calls(app, conn):
         JOIN Publicador pub ON p.idPublicador = pub.id
         GROUP BY pub.nome;
         """
-        result = conn.execute(query)
+        result = conn.execute(text(query))
         return result.fetchall()
     
     @app.get("/quantidade/quantidade_jogos_por_genero")
@@ -46,6 +47,6 @@ def register_calls(app, conn):
         JOIN Jogo j ON e.idJogo = j.id
         GROUP BY g.nome;
         """
-        result = conn.execute(query)
+        result = conn.execute(text(query))
         return result.fetchall()
 

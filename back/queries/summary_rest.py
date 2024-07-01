@@ -1,3 +1,4 @@
+from sqlalchemy import text
 
 def register_calls(app, conn):
     @app.get("/resumo/media_avaliacao_genero")
@@ -8,7 +9,7 @@ def register_calls(app, conn):
         JOIN (SELECT * FROM Jogo WHERE avaliacao IS NOT NULL) j ON j.id IN (SELECT e.idJogo FROM Especificacao e WHERE e.idGenero = g.id)
         GROUP BY g.nome;
         """
-        result = conn.execute(query)
+        result = conn.execute(text(query))
         return result.fetchall()
 
     @app.get("/resumo/jogos_publicados_desenvolvedor")
@@ -20,7 +21,7 @@ def register_calls(app, conn):
         JOIN Jogo j ON j.id = dev.idJogo AND j.avaliacao > (SELECT AVG(avaliacao) FROM Jogo)
         GROUP BY d.nome;
         """
-        result = conn.execute(query)
+        result = conn.execute(text(query))
         return result.fetchall()
 
     @app.get("/resumo/plataformas_suportadas_jogo")
@@ -32,7 +33,7 @@ def register_calls(app, conn):
         JOIN Plataforma p ON v.idPlataforma = p.id
         GROUP BY j.nome;
         """
-        result = conn.execute(query)
+        result = conn.execute(text(query))
         return result.fetchall()
 
     @app.get("/resumo/funcoes_criadores")
@@ -44,7 +45,7 @@ def register_calls(app, conn):
         JOIN Funcao f ON a.idFuncao = f.id
         GROUP BY c.nome;
         """
-        result = conn.execute(query)
+        result = conn.execute(text(query))
         return result.fetchall()
     
     @app.get("/resumo/jogos_por_genero")
@@ -56,7 +57,7 @@ def register_calls(app, conn):
         JOIN Jogo j ON e.idJogo = j.id
         GROUP BY g.nome;
         """
-        result = conn.execute(query)
+        result = conn.execute(text(query))
         return result.fetchall()
 
     
