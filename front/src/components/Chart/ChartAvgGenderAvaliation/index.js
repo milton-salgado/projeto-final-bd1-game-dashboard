@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { colors } from "../../../utils/constants";
 
 // Services
-import quantityService from "../../../services/quantityService";
+import summaryService from "../../../services/summaryService";
 
 import {
     Chart as ChartJS,
@@ -25,44 +25,44 @@ ChartJS.register(
     Legend
 );
 
-const ChartCountGamesPublishers = () => {
-    const [qtdJogosPublicador, setQtdJogosPublicador] = useState([]);
+const ChartAvgGenderAvaliation = () => {
+    const [avgGeneroAvaliation, setAvgGeneroAvaliation] = useState([]);
 
     useEffect(() => {
-        quantityService
-            .getQuantidadeJogosPublicador()
+        summaryService
+            .getMediaAvaliacaoGenero()
             .then((response) => {
-                setQtdJogosPublicador(response);
+                setAvgGeneroAvaliation(response);
             })
             .catch((Err) => {
-                console.log("Error getQuantidadeJogosPublicador: " + Err);
+                console.log("Error getMediaAvaliacaoGenero: " + Err);
             });
     }, []);
 
     const data = {
-        labels: qtdJogosPublicador.data?.slice(0, 50).map((elemento) => elemento.publicador),
+        labels: avgGeneroAvaliation.data?.map((elemento) => elemento.genero),
         datasets: [
             {
-                label: "Quantidade de jogos por publicador",
-                backgroundColor: qtdJogosPublicador.data?.slice(0, 50).map(
+                label: "Média de avaliação por gênero",
+                backgroundColor: avgGeneroAvaliation.data?.map(
                     (_, index) => colors[index % colors.length]
                 ),
-                borderColor: qtdJogosPublicador.data?.slice(0, 50).map((_, index) =>
+                borderColor: avgGeneroAvaliation.data?.map((_, index) =>
                     colors[index % colors.length].replace("0.6", "1")
                 ),
-                hoverBackgroundColor: qtdJogosPublicador.data?.slice(0, 50).map((_, index) =>
+                hoverBackgroundColor: avgGeneroAvaliation.data?.map((_, index) =>
                     colors[index % colors.length].replace("0.6", "0.8")
                 ),
-                hoverBorderColor: qtdJogosPublicador.data?.slice(0, 50).map((_, index) =>
+                hoverBorderColor: avgGeneroAvaliation.data?.map((_, index) =>
                     colors[index % colors.length].replace("0.6", "1")
                 ),
                 borderWidth: 1,
-                data: qtdJogosPublicador.data?.slice(0, 50).map(
-                    (elemento) => elemento.quantidade_jogos
+                data: avgGeneroAvaliation.data?.map(
+                    (elemento) => elemento.media_avaliacao
                 ),
             },
         ],
-    };    
+    };
 
     const options = {
         responsive: true,
@@ -80,7 +80,7 @@ const ChartCountGamesPublishers = () => {
             },
             title: {
                 display: true,
-                text: "Quantidade de Jogos por Publicador",
+                text: "Media de avaliação por gênero",
                 font: {
                     size: 18,
                     family: "Source Code Pro",
@@ -105,7 +105,7 @@ const ChartCountGamesPublishers = () => {
                 },
             },
             y: {
-                beginAtZero: true,
+                beginAtZero: false,
                 ticks: {
                     font: {
                         size: 12,
@@ -126,4 +126,4 @@ const ChartCountGamesPublishers = () => {
     );
 };
 
-export default ChartCountGamesPublishers;
+export default ChartAvgGenderAvaliation;
