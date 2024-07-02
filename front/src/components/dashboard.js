@@ -1,33 +1,24 @@
 import React from 'react';
 import './../style.css';
-import { useEffect, useState } from "react";
 
-// Services
-import quantityService from "../services/quantityService";
-import summaryService from "../services/summaryService";
+import BarraQtdJogosPlataforma from './barraQtdJogosPlataforma';
+import BarraQtdJogosLoja from './barraQtdJogosLoja';
+import BarraQtdJogosPublicador from './barraQtdJogosPublicador';
+import BarraQtdJogosGenero from './barraQtdJogosGenero';
+import TabelaJogosPlataforma from './tabelaJogosPlataforma';
+
 
 const Dashboard = () => {
-  const [qtdJogosPlataforma, setQtdJogosPlataforma] = useState([]);
-
-  useEffect(() => {
-    quantityService
-      .getQuantidadeJogosPlataforma()
-      .then((response) => {
-        setQtdJogosPlataforma(response);
-        console.log(qtdJogosPlataforma);
-      })
-      .catch((Err) => {
-        console.log("Error getQuantidadeJogosPlataforma: " + Err);
-      });
-  }, []);
 
   return (
     <div className="dashboard">
       <h2>Dashboard</h2>
       <p>Conteúdo do dashboard vai aqui...</p>
-      <div>
-      {qtdJogosPlataforma?.data?.map((fodase) => <div>{fodase.plataforma}: {fodase.quantidade_jogos}</div>)}
-      </div>
+      <BarraQtdJogosPlataforma />
+      <BarraQtdJogosLoja />
+      <BarraQtdJogosPublicador />
+      <BarraQtdJogosGenero />
+      <TabelaJogosPlataforma />
     </div>
   );
 };

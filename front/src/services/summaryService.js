@@ -17,7 +17,7 @@ export default {
       console.log(error);
     }
   },
-  async getPlataforomasSuportadasJogo() {
+  async getPlataformasSuportadasJogo() {
     try {
       const response = api.get(`/resumo/plataformas_suportadas_jogo`);
       return response;
