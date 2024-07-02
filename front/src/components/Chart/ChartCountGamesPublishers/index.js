@@ -40,29 +40,29 @@ const ChartCountGamesPublishers = () => {
     }, []);
 
     const data = {
-        labels: qtdJogosPublicador.data?.slice(0, 50).map((elemento) => elemento.publicador),
+        labels: qtdJogosPublicador.data?.map((elemento) => elemento.publicador),
         datasets: [
             {
                 label: "Quantidade de jogos por publicador",
-                backgroundColor: qtdJogosPublicador.data?.slice(0, 50).map(
+                backgroundColor: qtdJogosPublicador.data?.map(
                     (_, index) => colors[index % colors.length]
                 ),
-                borderColor: qtdJogosPublicador.data?.slice(0, 50).map((_, index) =>
+                borderColor: qtdJogosPublicador.data?.map((_, index) =>
                     colors[index % colors.length].replace("0.6", "1")
                 ),
-                hoverBackgroundColor: qtdJogosPublicador.data?.slice(0, 50).map((_, index) =>
+                hoverBackgroundColor: qtdJogosPublicador.data?.map((_, index) =>
                     colors[index % colors.length].replace("0.6", "0.8")
                 ),
-                hoverBorderColor: qtdJogosPublicador.data?.slice(0, 50).map((_, index) =>
+                hoverBorderColor: qtdJogosPublicador.data?.map((_, index) =>
                     colors[index % colors.length].replace("0.6", "1")
                 ),
                 borderWidth: 1,
-                data: qtdJogosPublicador.data?.slice(0, 50).map(
+                data: qtdJogosPublicador.data?.map(
                     (elemento) => elemento.quantidade_jogos
                 ),
             },
         ],
-    };    
+    };
 
     const options = {
         responsive: true,
@@ -70,10 +70,11 @@ const ChartCountGamesPublishers = () => {
         plugins: {
             legend: {
                 position: "top",
+                align: "start",
                 labels: {
                     font: {
                         size: 14,
-                        family: "Source Code Pro",
+                        family: "Montserrat",
                         weight: "bold",
                     },
                 },
@@ -81,9 +82,11 @@ const ChartCountGamesPublishers = () => {
             title: {
                 display: true,
                 text: "Quantidade de Jogos por Publicador",
+                position: "top",
+                align: "start",
                 font: {
                     size: 18,
-                    family: "Source Code Pro",
+                    family: "Montserrat",
                     weight: "bold",
                 },
                 padding: {
@@ -97,7 +100,7 @@ const ChartCountGamesPublishers = () => {
                 ticks: {
                     font: {
                         size: 12,
-                        family: "Source Code Pro",
+                        family: "Montserrat",
                     },
                 },
                 grid: {
@@ -109,7 +112,7 @@ const ChartCountGamesPublishers = () => {
                 ticks: {
                     font: {
                         size: 12,
-                        family: "Source Code Pro",
+                        family: "Montserrat",
                     },
                 },
                 grid: {
@@ -120,8 +123,17 @@ const ChartCountGamesPublishers = () => {
     };
 
     return (
-        <div style={{ height: "400px" }}>
-            <Bar data={data} options={options} />
+        <div
+            style={{
+                backgroundColor: "#f0f2f5",
+                borderRadius: "8px",
+                overflowX: "scroll",
+                padding: "20px",
+            }}
+        >
+            <div style={{ width: "10000px", height: "400px" }}>
+                <Bar data={data} options={options} />
+            </div>
         </div>
     );
 };

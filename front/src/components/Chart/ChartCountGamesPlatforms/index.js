@@ -73,7 +73,7 @@ const ChartCountGamesPlatforms = () => {
                 labels: {
                     font: {
                         size: 14,
-                        family: "Source Code Pro",
+                        family: "Montserrat",
                         weight: "bold",
                     },
                 },
@@ -83,7 +83,7 @@ const ChartCountGamesPlatforms = () => {
                 text: "Quantidade de Jogos por Plataforma",
                 font: {
                     size: 18,
-                    family: "Source Code Pro",
+                    family: "Montserrat",
                     weight: "bold",
                 },
                 padding: {
@@ -97,7 +97,7 @@ const ChartCountGamesPlatforms = () => {
                 ticks: {
                     font: {
                         size: 12,
-                        family: "Source Code Pro",
+                        family: "Montserrat",
                     },
                 },
                 grid: {
@@ -109,7 +109,7 @@ const ChartCountGamesPlatforms = () => {
                 ticks: {
                     font: {
                         size: 12,
-                        family: "Source Code Pro",
+                        family: "Montserrat",
                     },
                 },
                 grid: {
@@ -120,7 +120,14 @@ const ChartCountGamesPlatforms = () => {
     };
 
     return (
-        <div style={{ height: "400px" }}>
+        <div
+            style={{
+                height: "400px",
+                backgroundColor: "#f0f2f5",
+                borderRadius: "8px",
+                padding: "20px",
+            }}
+        >
             <Bar data={data} options={options} />
         </div>
     );

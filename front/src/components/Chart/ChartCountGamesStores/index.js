@@ -1,29 +1,14 @@
 import React from "react";
-import { Bar } from "react-chartjs-2";
+import { Pie } from "react-chartjs-2";
 import { useEffect, useState } from "react";
 import { colors } from "../../../utils/constants";
 
 // Services
 import quantityService from "../../../services/quantityService";
 
-import {
-    Chart as ChartJS,
-    CategoryScale,
-    BarElement,
-    Title,
-    Tooltip,
-    Legend,
-    LinearScale,
-} from "chart.js";
+import { Chart as ChartJS, ArcElement, Title, Tooltip, Legend } from "chart.js";
 
-ChartJS.register(
-    CategoryScale,
-    LinearScale,
-    BarElement,
-    Title,
-    Tooltip,
-    Legend
-);
+ChartJS.register(ArcElement, Title, Tooltip, Legend);
 
 const ChartCountGamesStores = () => {
     const [qtdJogosLoja, setQtdJogosLoja] = useState([]);
@@ -67,13 +52,21 @@ const ChartCountGamesStores = () => {
     const options = {
         responsive: true,
         maintainAspectRatio: false,
+        layout: {
+            padding: {
+                left: 50,
+                right: 50,
+                top: 0,
+                bottom: 0,
+            },
+        },
         plugins: {
             legend: {
-                position: "top",
+                position: "left",
                 labels: {
                     font: {
                         size: 14,
-                        family: "Source Code Pro",
+                        family: "Montserrat",
                         weight: "bold",
                     },
                 },
@@ -83,7 +76,7 @@ const ChartCountGamesStores = () => {
                 text: "Quantidade de Jogos por Loja",
                 font: {
                     size: 18,
-                    family: "Source Code Pro",
+                    family: "Montserrat",
                     weight: "bold",
                 },
                 padding: {
@@ -92,36 +85,22 @@ const ChartCountGamesStores = () => {
                 },
             },
         },
-        scales: {
-            x: {
-                ticks: {
-                    font: {
-                        size: 12,
-                        family: "Source Code Pro",
-                    },
-                },
-                grid: {
-                    display: false,
-                },
-            },
-            y: {
-                beginAtZero: true,
-                ticks: {
-                    font: {
-                        size: 12,
-                        family: "Source Code Pro",
-                    },
-                },
-                grid: {
-                    color: "rgba(200, 200, 200, 0.3)",
-                },
-            },
+        animation: {
+            animateRotate: true,
+            animateScale: true,
         },
     };
 
     return (
-        <div style={{ height: "400px" }}>
-            <Bar data={data} options={options} />
+        <div
+            style={{
+                height: "400px",
+                backgroundColor: "#f0f2f5",
+                borderRadius: "8px",
+                padding: "20px",
+            }}
+        >
+            <Pie data={data} options={options} />
         </div>
     );
 };

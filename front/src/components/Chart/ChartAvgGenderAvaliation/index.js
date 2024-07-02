@@ -50,8 +50,9 @@ const ChartAvgGenderAvaliation = () => {
                 borderColor: avgGeneroAvaliation.data?.map((_, index) =>
                     colors[index % colors.length].replace("0.6", "1")
                 ),
-                hoverBackgroundColor: avgGeneroAvaliation.data?.map((_, index) =>
-                    colors[index % colors.length].replace("0.6", "0.8")
+                hoverBackgroundColor: avgGeneroAvaliation.data?.map(
+                    (_, index) =>
+                        colors[index % colors.length].replace("0.6", "0.8")
                 ),
                 hoverBorderColor: avgGeneroAvaliation.data?.map((_, index) =>
                     colors[index % colors.length].replace("0.6", "1")
@@ -73,7 +74,7 @@ const ChartAvgGenderAvaliation = () => {
                 labels: {
                     font: {
                         size: 14,
-                        family: "Source Code Pro",
+                        family: "Montserrat",
                         weight: "bold",
                     },
                 },
@@ -83,7 +84,7 @@ const ChartAvgGenderAvaliation = () => {
                 text: "Media de avaliação por gênero",
                 font: {
                     size: 18,
-                    family: "Source Code Pro",
+                    family: "Montserrat",
                     weight: "bold",
                 },
                 padding: {
@@ -97,7 +98,7 @@ const ChartAvgGenderAvaliation = () => {
                 ticks: {
                     font: {
                         size: 12,
-                        family: "Source Code Pro",
+                        family: "Montserrat",
                     },
                 },
                 grid: {
@@ -109,7 +110,7 @@ const ChartAvgGenderAvaliation = () => {
                 ticks: {
                     font: {
                         size: 12,
-                        family: "Source Code Pro",
+                        family: "Montserrat",
                     },
                 },
                 grid: {
@@ -120,7 +121,14 @@ const ChartAvgGenderAvaliation = () => {
     };
 
     return (
-        <div style={{ height: "400px" }}>
+        <div
+            style={{
+                height: "400px",
+                backgroundColor: "#f0f2f5",
+                borderRadius: "8px",
+                padding: "20px",
+            }}
+        >
             <Bar data={data} options={options} />
         </div>
     );
