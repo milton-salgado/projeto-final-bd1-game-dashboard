@@ -1,8 +1,8 @@
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyles = createGlobalStyle`
-    @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap');
-    
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
     html,
     body,
     div,
@@ -140,7 +140,7 @@ const GlobalStyles = createGlobalStyle`
     }
 
     body {
-        font-family: "Source Code Pro", monospace;
+        font-family: "Montserrat", sans-serif;
         font-optical-sizing: auto;
         line-height: 1;
     }
@@ -151,7 +151,7 @@ const GlobalStyles = createGlobalStyle`
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  font-family: "Source Code Pro", monospace;
+  font-family: "Montserrat", sans-serif;
   font-optical-sizing: auto;
 }
 `;
