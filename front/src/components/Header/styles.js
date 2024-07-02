@@ -29,10 +29,12 @@ export const StyledLogo = styled.img`
 `;
 
 export const StyledTitle = styled.h1`
-    font-size: 36px;
+    font-size: 42px;
     text-align: center;
     color: #343a40;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    font-family: "Poppins", sans-serif;
+    font-weight: 800;
 
     @media (max-width: 768px) {
         font-size: 28px;
