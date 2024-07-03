@@ -81,7 +81,7 @@ const ChartAvgGenderAvaliation = () => {
             },
             title: {
                 display: true,
-                text: "Media de avaliação por gênero",
+                text: "Média de Avaliação por Gênero",
                 font: {
                     size: 18,
                     family: "Montserrat",

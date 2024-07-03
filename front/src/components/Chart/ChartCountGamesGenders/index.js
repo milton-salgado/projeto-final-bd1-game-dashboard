@@ -43,7 +43,7 @@ const ChartCountGamesGenders = () => {
         labels: qtdJogosGenero.data?.map((elemento) => elemento.genero),
         datasets: [
             {
-                label: "Quantidade de jogos por genero",
+                label: "Quantidade de jogos por gênero",
                 backgroundColor: qtdJogosGenero.data?.map(
                     (_, index) => colors[index % colors.length]
                 ),
