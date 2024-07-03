@@ -9,6 +9,7 @@ import ChartAvgGenderAvaliation from "../Chart/ChartAvgGenderAvaliation/index.js
 import { StyledContainer } from "./styles.js";
 import GamesDeveloperTable from "../Table/GamesDevelopersTable/index.js";
 import CreatorsRolesTable from "../Table/CreatorsRolesTable/index.js";
+import GamesGendersTable from "../Table/GamesGendersTable/index.js";
 
 const Dashboard = () => {
     return (
@@ -21,6 +22,7 @@ const Dashboard = () => {
             <ChartAvgGenderAvaliation />
             <GamesDeveloperTable />
             <CreatorsRolesTable />
+            <GamesGendersTable />
         </StyledContainer>
     );
 };
