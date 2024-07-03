@@ -70,7 +70,7 @@ const GamePlatformsTable = () => {
     return (
         <StyledContainer>
             <StyledTitle>
-                Tabela de Desenvolvedores e Quantidades de Jogos Desenvolvidos
+                <StyledTitle>Plataformas Suportadas por Jogo</StyledTitle>
             </StyledTitle>
             <StyledSearchInput
                 type="text"

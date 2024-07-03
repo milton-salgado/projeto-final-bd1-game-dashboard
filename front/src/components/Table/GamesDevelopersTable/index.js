@@ -73,9 +73,7 @@ const GamesDeveloperTable = () => {
 
     return (
         <StyledContainer>
-            <StyledTitle>
-                Tabela de Desenvolvedores e Quantidades de Jogos Desenvolvidos
-            </StyledTitle>
+            <StyledTitle>Quantidade de Jogos por Desenvolvedor</StyledTitle>
             <StyledSearchInput
                 type="text"
                 placeholder="Pesquisar desenvolvedor..."
@@ -86,7 +84,7 @@ const GamesDeveloperTable = () => {
                 <thead>
                     <tr>
                         <th>Desenvolvedor</th>
-                        <th>Quantidade de jogos publicados</th>
+                        <th>Quantidade de jogos desenvolvidos</th>
                     </tr>
                 </thead>
                 <tbody>{renderRows()}</tbody>

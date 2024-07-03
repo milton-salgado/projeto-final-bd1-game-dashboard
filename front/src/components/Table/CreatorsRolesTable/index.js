@@ -71,7 +71,7 @@ const CreatorsRolesTable = () => {
 
     return (
         <StyledContainer>
-            <StyledTitle>Tabela de Criadores e Funções</StyledTitle>
+            <StyledTitle>Funções Organizadas por Criador</StyledTitle>
             <StyledSearchInput
                 type="text"
                 placeholder="Pesquisar criador..."
