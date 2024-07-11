@@ -17,7 +17,10 @@ const ChartCountGamesStores = () => {
         quantityService
             .getQuantidadeJogosLoja()
             .then((response) => {
-                setQtdJogosLoja(response);
+                const dadosFiltrados = response.data.filter(
+                    (elemento) => elemento.total_vendas >= 100
+                );
+                setQtdJogosLoja({ data: dadosFiltrados });
             })
             .catch((Err) => {
                 console.log("Error getQuantidadeJogosLoja: " + Err);

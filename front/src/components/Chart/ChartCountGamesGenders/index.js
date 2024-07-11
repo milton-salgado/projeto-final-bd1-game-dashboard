@@ -32,7 +32,13 @@ const ChartCountGamesGenders = () => {
         quantityService
             .getQuantidadeJogosGenero()
             .then((response) => {
-                setQtdJogosGenero(response);
+                const dadosFiltrados = response.data.filter(
+                    (elemento) => elemento.quantidade_jogos >= 25
+                );
+                const dadosOrdenados = dadosFiltrados.sort(
+                    (a, b) => b.quantidade_jogos - a.quantidade_jogos
+                );
+                setQtdJogosGenero({ data: dadosOrdenados });
             })
             .catch((Err) => {
                 console.log("Error getQuantidadeJogosGenero: " + Err);

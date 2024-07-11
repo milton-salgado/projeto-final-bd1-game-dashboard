@@ -32,7 +32,13 @@ const ChartCountGamesPlatforms = () => {
         quantityService
             .getQuantidadeJogosPlataforma()
             .then((response) => {
-                setQtdJogosPlataforma(response);
+                const dadosFiltrados = response.data.filter(
+                    (elemento) => elemento.quantidade_jogos >= 35
+                );
+                const dadosOrdenados = dadosFiltrados.sort(
+                    (a, b) => b.quantidade_jogos - a.quantidade_jogos
+                );
+                setQtdJogosPlataforma({ data: dadosOrdenados });
             })
             .catch((Err) => {
                 console.log("Error getQuantidadeJogosPlataforma: " + Err);

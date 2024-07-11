@@ -32,10 +32,16 @@ const ChartAvgGenderAvaliation = () => {
         summaryService
             .getMediaAvaliacaoGenero()
             .then((response) => {
-                setAvgGeneroAvaliation(response);
+                const dadosFiltrados = response.data.filter(
+                    (elemento) => elemento.media_avaliacao >= 3
+                );
+                const dadosOrdenados = dadosFiltrados.sort(
+                    (a, b) => b.media_avaliacao - a.media_avaliacao
+                );
+                setAvgGeneroAvaliation({ data: dadosOrdenados });
             })
-            .catch((Err) => {
-                console.log("Error getMediaAvaliacaoGenero: " + Err);
+            .catch((err) => {
+                console.log("Error getMediaAvaliacaoGenero: " + err);
             });
     }, []);
 

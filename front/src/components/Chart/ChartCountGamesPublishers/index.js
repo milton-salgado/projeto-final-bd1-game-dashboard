@@ -32,7 +32,13 @@ const ChartCountGamesPublishers = () => {
         quantityService
             .getQuantidadeJogosPublicador()
             .then((response) => {
-                setQtdJogosPublicador(response);
+                const dadosFiltrados = response.data.filter(
+                    (elemento) => elemento.quantidade_jogos >= 1
+                );
+                const dadosOrdenados = dadosFiltrados.sort(
+                    (a, b) => b.quantidade_jogos - a.quantidade_jogos
+                );
+                setQtdJogosPublicador({ data: dadosOrdenados });
             })
             .catch((Err) => {
                 console.log("Error getQuantidadeJogosPublicador: " + Err);
